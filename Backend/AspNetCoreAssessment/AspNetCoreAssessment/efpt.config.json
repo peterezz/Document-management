@@ -1,0 +1,46 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "AspnetcoreassessmentContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Entities",
+   "ProjectRootNamespace": "AspNetCoreAssessment",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Document_files]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Documents]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Priorities]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "DESKTOP-9DSOLML.AspNetCoreAssessment",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}
