@@ -15,6 +15,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\AspNetCoreAssessment\Backend\AspNetCoreAssessment\AspNetCoreAssessment
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/AspNetCoreAssessment/Backend/AspNetCoreAssessment/AspNetCoreAssessment/Views/Document/details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdW1lbnRcZGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AspNetCoreAssessment/Backend/AspNetCoreAssessment/AspNetCoreAssessment/Views/Document/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdW1lbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AspNetCoreAssessment/Backend/AspNetCoreAssessment/AspNetCoreAssessment/Views/Document/update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdW1lbnRcdXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AspNetCoreAssessment/Backend/AspNetCoreAssessment/AspNetCoreAssessment/Views/Document/upload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdW1lbnRcdXBsb2FkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/AspNetCoreAssessment/Backend/AspNetCoreAssessment/AspNetCoreAssessment/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,4 +1,7 @@
+using AspNetCoreAssessment.AutoMapper;
 using AspNetCoreAssessment.Entities;
+using AspNetCoreAssessment.Manger;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,12 +9,28 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
 // database connection string
 string ConnectionString = builder.Configuration.GetConnectionString("DeafualConnection");
 
 // database connection
 builder.Services.AddDbContext<AspnetcoreassessmentContext>(options => options.UseSqlServer(ConnectionString));
+
+// AutoMaper Configurations
+var config = new MapperConfiguration(Mcf =>
+{
+    Mcf.AddProfile(new DomainProfile());
+    
+});
+var Mapper = config.CreateMapper();
+builder.Services.AddSingleton(Mapper);
+
+// add depedency injections
+builder.Services.AddTransient<DocumentManger>();
+builder.Services.AddTransient<PriorityManger>();
+builder.Services.AddTransient<DocumentFilesManger>();
+
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

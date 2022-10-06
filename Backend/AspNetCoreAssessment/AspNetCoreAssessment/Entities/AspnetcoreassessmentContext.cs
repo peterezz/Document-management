@@ -30,9 +30,7 @@ namespace AspNetCoreAssessment.Entities
 
                 entity.ToTable("Document_files");
 
-                entity.Property(e => e.FileId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("File_ID");
+                entity.Property(e => e.FileId).HasColumnName("File_ID");
 
                 entity.Property(e => e.DocumentId).HasColumnName("Document_ID");
 

@@ -5,8 +5,9 @@ namespace AspNetCoreAssessment.Models
     {
         public int FileId { get; set; }
         public string FilePath { get; set; }
-        public int DocumentId { get; set; }
+        public int DocumentId { get; set; } 
         
         public IFormFile DocumentFile { get; set; }
+        public string DocumentFolderName { get; set; }
     }
 }

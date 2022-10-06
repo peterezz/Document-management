@@ -23,6 +23,10 @@ namespace AspNetCoreAssessment.Reposatory
         {
             return GetMany(where, includeProperties).FirstOrDefault();
         }
+        public virtual TEntity GetLastOne(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            return DbSet.OrderByDescending(where).FirstOrDefault();
+        }
         public virtual IQueryable<TEntity> GetMany(Expression<Func<TEntity, bool>> where = null,
             params Expression<Func<TEntity, object>>[] includeProperties)
         {

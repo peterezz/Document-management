@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using AspNetCoreAssessment.Entities;
 
 namespace AspNetCoreAssessment.Models
@@ -17,14 +18,16 @@ namespace AspNetCoreAssessment.Models
         [Required(ErrorMessage = "Priority is required")]
         [Display(Name = "Priority")]
         public int Priority { get; set; }
+        [NotMapped]
+        public string? PriorityName { get; set; }
+
         [Required(ErrorMessage = "Due date field is required")]
         [Display(Name = "Due Date")]
         public DateTime DueDate { get; set; }
 
         //Document Files
-        [Required(ErrorMessage ="At Least Upload one file")]
+        [NotMapped]
         [Display(Name ="Document Files")]
-        public List<IFormFile> DocumentFiles{ get; set; }
-
+        public List<IFormFile>? DocumentFiles{ get; set; }
     }
 }

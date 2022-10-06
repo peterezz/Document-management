@@ -18,13 +18,18 @@
 
     <!-- Bootstrap + Ollie main styles -->
     <link rel="stylesheet" href="/assets/css/ollie.css">
-
+    <style>
+        .custom-nav-link
+        {
+            margin: 2px 8px ; 
+        }
+    </style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
     <nav id="scrollspy" class="navbar navbar-light bg-light navbar-expand-lg fixed-top" data-spy="affix" data-offset-top="20">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="assets/imgs/brand.svg" alt="" class="brand-img"></a>
+            <a class="navbar-brand" href="/"><img src="/assets/imgs/brand.svg" alt="" class="brand-img"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,16 +37,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
+                        <a class="custom-nav-link" href="/#home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="custom-nav-link" href="/#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="custom-nav-link" href="/#contact">Contact</a>
+                    </li>
+                    <li class="custom-nav-link">
+                        <a class="custom-nav-link" href="/Document/index#AvalableDocs">Available documents</a>
                     </li>
                     <li class="nav-item ml-0 ml-lg-4">
-                        <a class="nav-link btn btn-primary" href="components.html">Components</a>
+                        <a class=" btn btn-primary" href="/Document/upload#UploadDocument">Upload a Document</a>
                     </li>
                 </ul>
             </div>
@@ -66,7 +74,7 @@
             </div>
         </div>
 
-        <div class="infos container mb-4 mb-md-2">
+        <div class="infos container mb-4 mb-md-2" id="Msg">
             <div class="title">
                 <h5>Peter Ezzat</h5>
                 <h6 class="subtitle font-weight-normal">Full Stack Asp.Net developer</h6>
@@ -88,7 +96,13 @@
             @RenderBody()
         </main>
 
-
+         <footer class="footer mt-5 border-top">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-6 text-center text-md-left">
+                    <p class="mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; Peter Ezzat</p>
+                </div>
+            </div>
+        </footer>
 
     <script src="/lib/jquery/dist/jquery.min.js"></script>
     <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -104,6 +118,9 @@
 
     <!-- Ollie js -->
     <script src="/assets/js/Ollie.js"></script>
+    @RenderSection("_ValidationScript", required: false)
+    @RenderSection("_DocumenDatatable", required: false)
+
 
 </body>
 </html>
