@@ -17,7 +17,8 @@ namespace AspNetCoreAssessment.Manger
         }
         public void UploadFile(DocumentFilesVM documentFilesVM)
         {
-            documentFilesVM.FilePath = FileManger.UploadFile(documentFilesVM.DocumentFile, "/wwwroot/Uploads/" + documentFilesVM.DocumentFolderName + "/");
+            documentFilesVM.FilePath = FileManger.UploadFile(documentFilesVM.DocumentFile,
+                "/wwwroot/Uploads/" + documentFilesVM.DocumentFolderName + "/");
             DocumentFiles data =mapper.Map<DocumentFiles>(documentFilesVM);
             documentFilesRepo.Add(data);
 

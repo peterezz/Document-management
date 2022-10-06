@@ -20,14 +20,14 @@ namespace AspNetCoreAssessment.Controllers
         [HttpPost]
         public IActionResult upload(DocumentVM documentVM)
         {
-           
-                if (documentVM.DocumentFiles == null)
-                    return BadRequest();
-                var priority = priorityManger.SearchPriority(documentVM.Priority);
-                if(priority == null)
-                    return NotFound();
-                documentManger.UploadDocument(documentVM);
-                return Ok();
+
+            if (documentVM.DocumentFiles == null)
+                return BadRequest();
+            var priority = priorityManger.SearchPriority(documentVM.Priority);
+            if (priority == null)
+                return NotFound();
+            documentManger.UploadDocument(documentVM);
+            return Ok();
         }
         [HttpGet("{Id}")]
         public IActionResult details(int Id = 0)
@@ -40,16 +40,16 @@ namespace AspNetCoreAssessment.Controllers
             return Ok(data);
         }
         [HttpPut]
-        public IActionResult update(DocumentVM documentVM)
+        public IActionResult update( DocumentVM documentVM)
         {
             var data = documentManger.GetDocumentById(documentVM.DocumentId);
             if (data == null)
                 return NotFound();
 
             documentManger.UpdateDocument(documentVM);
-            return NoContent();    
+            return NoContent();
         }
-        [HttpDelete]
+        [HttpDelete("{Id}")]
         public IActionResult delete(int Id = 0)
         {
             if (Id == 0)

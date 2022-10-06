@@ -8,7 +8,6 @@ namespace AssessmentFrontEnd.Controllers
         [HttpGet]
         public IActionResult Index(string Msg)
         {
-            DocumentManger.GetDocument();
             return View();
         }
         [HttpGet]

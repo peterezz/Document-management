@@ -17,8 +17,8 @@ namespace AspNetCoreAssessment.Controllers
         [HttpGet]
         public IActionResult GetAllPriorities()
         {
-            priorityManger.GetAllPriorities();
-            return Ok();
+           var data= priorityManger.GetAllPriorities();
+            return Ok(data);
         }
     }
 }

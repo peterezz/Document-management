@@ -2,6 +2,7 @@
 using AspNetCoreAssessment.Models;
 using AspNetCoreAssessment.Reposatory;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreAssessment.Manger
 {
@@ -22,12 +23,15 @@ namespace AspNetCoreAssessment.Manger
             Documents document = map(documentVM);
             DocumentRepo.Add(document);
 
-            int documentId = DocumentRepo.GetLastOne(document => document.Name.Equals(documentVM.Name)).DocumentId;
+            int documentId = DocumentRepo.GetLastOne(document => document.Name.Equals(documentVM.Name)).
+                DocumentId;
             string FolderName = FolderManger.CreateNewFolder(documentVM.Name, documentId);
 
             foreach (var file in documentVM.DocumentFiles)
             {
-                DocumentFilesVM DocumentFile = new DocumentFilesVM { DocumentFile = file, DocumentId = documentId, DocumentFolderName=FolderName };
+                DocumentFilesVM DocumentFile = new DocumentFilesVM { DocumentFile = file,
+                    DocumentId = documentId,
+                    DocumentFolderName=FolderName };
                 documentFilesManger.UploadFile(DocumentFile);
             }
         }
@@ -46,7 +50,7 @@ namespace AspNetCoreAssessment.Manger
         }
         public DocumentVM GetDocumentById(int id)
         {
-            var data = DocumentRepo.GetOne(doc => doc.DocumentId == id, doc => doc.PriorityNavigation);
+            var data = DocumentRepo.GetOne(doc => doc.DocumentId == id, doc => doc.PriorityNavigation );
             if (data == null)
                 return null;
             DocumentVM documentVM =mapper.Map<DocumentVM>(data);
@@ -66,10 +70,9 @@ namespace AspNetCoreAssessment.Manger
             FolderManger.DeleteFolder(DocumentName);
             DocumentRepo.Delete(Id);
         }
-        public List<DocumentVM> GetDocuments()
+        public IQueryable<Documents> GetDocuments()
         {
-           var data = DocumentRepo.GetAll();
-            return mapper.Map<IQueryable<DocumentVM>>(data).ToList();
+          return DocumentRepo.GetAll();
 
             }
             private Documents map(DocumentVM documentVM)
