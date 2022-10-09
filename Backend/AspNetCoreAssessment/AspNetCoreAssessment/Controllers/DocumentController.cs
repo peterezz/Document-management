@@ -39,14 +39,14 @@ namespace AspNetCoreAssessment.Controllers
                 if(documentVM.DocumentFiles == null)
                 {
                     ModelState.AddModelError("", "At Least Upload one file");
+                    ViewBag.PrioritiesSelectList = priorityManger.GetAllPriorities();
                     return View();
                 }
                 documentManger.UploadDocument(documentVM);
                 Redirect("/Document#AvalableDocs");
 
             }
-            ViewBag.PrioritiesSelectList = priorityManger.GetAllPriorities();
-            return View();
+            return Redirect("/Document?Msg=UploadSuccess#Msg");
         }
         [HttpGet]
         public IActionResult details(int Id=0)

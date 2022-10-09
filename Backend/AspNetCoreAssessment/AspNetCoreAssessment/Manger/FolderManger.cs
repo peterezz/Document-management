@@ -14,21 +14,22 @@ namespace AspNetCoreAssessment.Manger
 
             return FolderName;
         }
-        public static void DeleteFolder(string FolderPath)
+        public static void DeleteFolder(string FolderName)
         {
-            if (Directory.Exists(FolderPath))
+            var directory = Directory.GetCurrentDirectory() + "/wwwroot/Uploads/" + FolderName;
+            if (Directory.Exists(directory))
             {
                 // Delete all files from the Directory  
-                foreach (string filename in Directory.GetFiles(FolderPath))
+                foreach (string filename in Directory.GetFiles(directory))
                 {
                     File.Delete(filename);
                 }
                 // Check all child Directories and delete files  
-                foreach (string subfolder in Directory.GetDirectories(FolderPath))
+                foreach (string subfolder in Directory.GetDirectories(directory))
                 {
                     DeleteFolder(subfolder);
                 }
-                Directory.Delete(FolderPath);
+                Directory.Delete(directory);
             }
         }
     }
