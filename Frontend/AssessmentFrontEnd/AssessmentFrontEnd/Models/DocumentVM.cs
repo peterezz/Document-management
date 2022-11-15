@@ -8,6 +8,8 @@ namespace AssessmentFrontEnd.Models
     {
         public int DocumentId { get; set; }
         [Required(ErrorMessage = "Document name field is required")]
+        [RegularExpression(@"^[^\\/:*;\.\)\(]+$", ErrorMessage = "The characters ':', '.' ';', '*', '/' and '\' are not allowed")]
+
         [Display(Name = "Document Name")]
         public string Name { get; set; }
         public DateTime Created { get; set; }

@@ -21,7 +21,7 @@ namespace AssessmentFrontEnd.Controllers
             var sortColumn = Request.Form[string.Concat("columns[", Request.Form["order[0][column]"], "][name]")];
             var sortColumnDirection = Request.Form["order[0][dir]"];
 
-            var Documents = DocumentManger.GetDocument();
+            var Documents = DocumentManger.GetDocument(searchValue).AsQueryable();
 
             if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
                 Documents = Documents.OrderBy(string.Concat(sortColumn, " ", sortColumnDirection));

@@ -2,6 +2,7 @@
 using AspNetCoreAssessment.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Configuration;
 
 namespace AspNetCoreAssessment.Controllers
 {
@@ -22,21 +23,21 @@ namespace AspNetCoreAssessment.Controllers
         {
 
             if (documentVM.DocumentFiles == null)
-                return BadRequest();
+                return BadRequest("At least upload file to the document");
             var priority = priorityManger.SearchPriority(documentVM.Priority);
             if (priority == null)
-                return NotFound();
+                return BadRequest("Please enter a valid priority");
             documentManger.UploadDocument(documentVM);
-            return Ok();
+            return Ok(documentVM);
         }
-        [HttpGet("{Id}")]
-        public IActionResult details(int Id = 0)
+        [HttpGet("GetDocumentById/{Id}")]
+        public IActionResult GetDocumentById(int Id )
         {
             if (Id == 0)
                 return BadRequest();
-            var data = documentManger.GetDocumentById(Id);
-            if (data == null)
-                return NotFound();
+                var data = documentManger.GetDocumentById(Id);
+                if (data == null)
+                    return NotFound("document not found");
             return Ok(data);
         }
         [HttpPut]
@@ -44,10 +45,10 @@ namespace AspNetCoreAssessment.Controllers
         {
             var data = documentManger.GetDocumentById(documentVM.DocumentId);
             if (data == null)
-                return NotFound();
+                return NotFound("No Such a document");
 
             documentManger.UpdateDocument(documentVM);
-            return NoContent();
+            return Ok(documentVM);
         }
         [HttpDelete("{Id}")]
         public IActionResult delete(int Id = 0)
@@ -56,16 +57,14 @@ namespace AspNetCoreAssessment.Controllers
                 return BadRequest();
             var data = documentManger.GetDocumentById(Id);
             if (data == null)
-                return NotFound();
+                return NotFound("Document not found");
             documentManger.DeleDocument(Id);
             return NoContent();
         }
-        [HttpGet]
+        [HttpGet()]
         public IActionResult GetAllDocuments()
         {
-            var data = documentManger.GetDocuments();
-            if (data == null)
-                return NoContent();
+            var data = documentManger.GetDocumentsVM();
             return Ok(data);
         }
     }

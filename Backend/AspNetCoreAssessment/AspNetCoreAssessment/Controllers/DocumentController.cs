@@ -34,6 +34,8 @@ namespace AspNetCoreAssessment.Controllers
         [HttpPost]
         public IActionResult upload(DocumentVM documentVM)
         {
+            ViewBag.PrioritiesSelectList = priorityManger.GetAllPriorities();
+
             if(ModelState.IsValid)
             {
                 if(documentVM.DocumentFiles == null)
@@ -43,10 +45,10 @@ namespace AspNetCoreAssessment.Controllers
                     return View();
                 }
                 documentManger.UploadDocument(documentVM);
-                Redirect("/Document#AvalableDocs");
+                Redirect("/Document#AvalableDocs?Msg=UploadSuccess#Msg");
 
             }
-            return Redirect("/Document?Msg=UploadSuccess#Msg");
+            return View();
         }
         [HttpGet]
         public IActionResult details(int Id=0)

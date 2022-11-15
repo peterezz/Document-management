@@ -20,7 +20,7 @@ namespace AspNetCoreAssessment.Manger
         }
         public void UploadDocument(DocumentVM documentVM)
         {
-            Documents document = map(documentVM);
+            Documents document =mapper.Map<Documents>(documentVM);
             DocumentRepo.Add(document);
 
             int documentId = DocumentRepo.GetLastOne(document => document.Name.Equals(documentVM.Name)).
@@ -35,10 +35,10 @@ namespace AspNetCoreAssessment.Manger
                 documentFilesManger.UploadFile(DocumentFile);
             }
         }
-        public IQueryable<Documents> SearchDocument(string SearchVal = null)
+        public List<Documents> SearchDocument(string SearchVal = null)
         {
             if (string.IsNullOrEmpty(SearchVal)){
-              return DocumentRepo.GetAll();
+              return DocumentRepo.GetAll().ToList();
 
             }
             return DocumentRepo.GetMany(doc => doc.Name.Contains(SearchVal) || 
@@ -46,21 +46,20 @@ namespace AspNetCoreAssessment.Manger
             doc.DueDate.ToString().Contains(SearchVal) || 
             doc.Priority.ToString().Contains(SearchVal) || 
             doc.Created.ToString().Contains(SearchVal) || 
-            doc.Date.ToString().Contains(SearchVal));
+            doc.Date.ToString().Contains(SearchVal)).ToList();
         }
         public DocumentVM GetDocumentById(int id)
         {
-            var data = DocumentRepo.GetOne(doc => doc.DocumentId == id, doc => doc.PriorityNavigation );
+            var data = DocumentRepo.GetOne(doc => doc.DocumentId == id, doc => doc.PriorityNavigation,doc=>doc.DocumentFiles );
             if (data == null)
                 return null;
             DocumentVM documentVM =mapper.Map<DocumentVM>(data);
-            documentVM.PriorityName = data.PriorityNavigation.Name;
             return documentVM;
 
         }
         public void UpdateDocument(DocumentVM documentVM)
         {
-            Documents doc= map(documentVM);
+            Documents doc=mapper.Map<Documents>(documentVM);    
             DocumentRepo.Edit(doc);
         }
         public void DeleDocument(int Id)
@@ -70,16 +69,19 @@ namespace AspNetCoreAssessment.Manger
             FolderManger.DeleteFolder(DocumentName);
             DocumentRepo.Delete(Id);
         }
-        public IQueryable<Documents> GetDocuments()
+        public List<DocumentVM> GetDocuments()
         {
-          return DocumentRepo.GetAll();
+            var data = DocumentRepo.GetMany(null, fils => fils.DocumentFiles,doc => doc.PriorityNavigation).ToList();
+            return mapper.Map<List<DocumentVM>>(data);
 
-            }
-            private Documents map(DocumentVM documentVM)
-        {
-            Documents doc = new Documents {DocumentId=documentVM.DocumentId, Name = documentVM.Name, Date = documentVM.Date, DueDate = documentVM.DueDate, Priority = documentVM.Priority,Created=documentVM.Created };
-            return doc;
+
         }
-      
+        public List<DocumentVM> GetDocumentsVM()
+        {
+            var data= DocumentRepo.GetMany(null,fils=>fils.DocumentFiles).ToList();
+            return mapper.Map<List<DocumentVM>>(data);
+
+
+        }
     }
 }

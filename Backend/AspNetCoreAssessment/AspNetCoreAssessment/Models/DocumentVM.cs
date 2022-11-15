@@ -9,6 +9,8 @@ namespace AspNetCoreAssessment.Models
     {
         public int DocumentId { get; set; }
         [Required(ErrorMessage ="Document name field is required")]
+        [RegularExpression(@"^[^\\/:*;\.\)\(]+$", ErrorMessage = "The characters ':', '.' ';', '*', '/' and '\' are not allowed")]
+
         [Display(Name="Document Name")]
         public string Name { get; set; }
         public DateTime Created { get; set; }
@@ -18,8 +20,7 @@ namespace AspNetCoreAssessment.Models
         [Required(ErrorMessage = "Priority is required")]
         [Display(Name = "Priority")]
         public int Priority { get; set; }
-        [NotMapped]
-        public string? PriorityName { get; set; }
+        public PrioritiesVM? PriorityName { get; set; }
 
         [Required(ErrorMessage = "Due date field is required")]
         [Display(Name = "Due Date")]
@@ -29,5 +30,6 @@ namespace AspNetCoreAssessment.Models
         [NotMapped]
         [Display(Name ="Document Files")]
         public List<IFormFile>? DocumentFiles{ get; set; }
+        public  List<DocumentFilesVM>? DocumentFilesVM { get; set; }
     }
 }
