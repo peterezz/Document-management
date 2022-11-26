@@ -58,17 +58,14 @@ sharing, or finding.
 
  ## Applying to this project
 
- - Asp .net core MVC.
+ - Asp .net core Web API.
 - Entity Framework core.
-- Identity Framework core.
 - auto mapper.
 - generic repository.
--  three tire architecture.
 - Dependency Injection.
-- ajax.
 -  Datatables.
-- upload File, photos & videos.
-- Send Mail.
+-   Create directories on server.
+- upload files (photos, videos, PDFs).
 ## Demo Video
 
 [![Watch the video](https://www.pngkey.com/png/detail/43-438998_youtube-play-button-png-download-image-youtube-png.png)](https://drive.google.com/file/d/1h_pL70t_gMM2vg0BgPO4BzHMyol5FXlg/view?usp=sharing)
